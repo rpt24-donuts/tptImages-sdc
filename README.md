@@ -1,1 +1,1 @@
-# tptProductInfoAndImage
+# tptImageModule
