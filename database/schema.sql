@@ -9,13 +9,12 @@ CREATE TABLE images (
   title VARCHAR(100),
   resourceType VARCHAR(50),
   format VARCHAR(50),
-  image1 BLOB,
-  image2 BLOB,
-  image3 BLOB,
-  image4 BLOB,
-  image5 BLOB,
+  image1 VARCHAR(50),
+  image2 VARCHAR(50),
+  image3 VARCHAR(50),
+  image4 VARCHAR(50),
+  image5 VARCHAR(50),
   PRIMARY KEY (id)
-
 );
 
 -- INSERT INTO Items (itemName, quantity) VALUES ('Cheese', 5);

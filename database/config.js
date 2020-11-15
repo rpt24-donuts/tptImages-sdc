@@ -1,12 +1,9 @@
+const mongoose = require('mongoose');
 
-const mysql = require('mysql');
+mongoose.Promise = global.Promise;
 
-const db = mysql.createConnection({
-	host:"localhost",
-	user:"root",
-	password:"",
-	database:"TpT",
-	multipleStatements: true
-});
+const schema = new mongoose.Schema({ }, { strict: false });
 
-module.exports = db;
+const Tpt = mongoose.model('images', schema);
+
+module.exports = Tpt;
