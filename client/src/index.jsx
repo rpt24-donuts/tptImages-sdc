@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import Search from './components/Search.jsx';
+//import Search from './components/Search.jsx';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      id: ''
     }
     this.search = this.search.bind(this);
     this.onChange = this.onChange(this);
@@ -21,15 +20,19 @@ class App extends React.Component {
   }
 
   search (id) {
-    console.log(id)
+    //console.log(id)
     console.log(`${id} was entered`);
     let that = this;
+
+  }
+
+  componentDidMount() {
     $.ajax({
       type: "get",
       url: `http://localhost:3003/id`,
-      data: id,
-      success: function() {
-        console.log('success')
+      data: '5',
+      success: function(data) {
+        console.log(data)
       },
     });
   }
@@ -38,12 +41,9 @@ class App extends React.Component {
     return (
       <div>
         <h1>Hello World jsx</h1>
-        <input onChange={this.onChange}/>
-      <button onClick={this.search}> Submit </button>
       </div>
     );
   }
 }
 
 ReactDOM.render(<App />, document.getElementById('tpt'));
-

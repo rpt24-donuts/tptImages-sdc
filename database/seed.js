@@ -18,13 +18,16 @@ const insertData = (data) => {
   images.create(data)
     .then(() => {
       console.log('succesful db insertion');
+      let search = {}
+      search['1'] = /.*/
+      console.log(search)
       //  db.disconnect()
-      //  images.find({}, (err, pics) => {
-      //    if(err) {console.log(err)}
-      //    else {
-      //     console.log('pics', pics)
-      //    }
-      //  });
+       images.find(search, (err, pics) => {
+         if(err) {console.log(err)}
+         else {
+          console.log('pics', pics)
+         }
+       });
     });
 };
 
