@@ -9,15 +9,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?/,
-        include: path.join(__dirname, '/client/src/index.jsx'),
+        test: [/\.jsx?/],
+        exclude: /node_modules/,
+        // include: [path.join(__dirname, '/client/src/index.jsx')],
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react']
-          }
-        }
-      }
-    ]
-  }
+            presets: ['@babel/preset-react', '@babel/preset-env']
+          },
+        },
+      },
+    ],
+  },
 };
