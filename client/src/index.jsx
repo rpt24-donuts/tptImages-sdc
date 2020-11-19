@@ -1,46 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-//import Search from './components/Search.jsx';
+import Title from './components/Title.jsx';
+import MainImage from './components/MainImage.jsx';
+import Info from './components/Info.jsx';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: '7',
+      mainImage:'',
+      imagesList: []
     }
-    this.search = this.search.bind(this);
-    this.onChange = this.onChange(this);
+    this.onHover = this.onHover(this);
   }
 
-  onChange (e) {
+  onHover (e) {
     console.log(e)
-    // this.setState({
-    //   id: e.target.value
-    // });
-  }
-
-  search (id) {
-    //console.log(id)
-    console.log(`${id} was entered`);
-    let that = this;
-
   }
 
   componentDidMount() {
+    let id = this.state.id;
+    let that = this;
     $.ajax({
       type: "get",
       url: `http://localhost:3003/id`,
-      data: '5',
+      data: this.state.id,
       success: function(data) {
-        console.log(data)
+        that.setState({
+          mainImage: data[id][0],
+          imagesList: data[id]
+        });
       },
     });
   }
 
   render() {
     return (
-      <div>
-        <h1>Hello World jsx</h1>
+      <div id="main">
+        <Title/>
+        <MainImage image={this.state.mainImage} list={this.state.imagesList}/>
+        <Info/>
       </div>
     );
   }
