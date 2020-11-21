@@ -13,8 +13,8 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/id', (req, res) => {
-  const name = req._parsedOriginalUrl.query;
+app.get('/:id/images', (req, res) => {
+  const name = req.params.id;
   const search = {};
   search[name] = /.*/;
   images.find(search, name, (err, pics) => {

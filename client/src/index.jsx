@@ -25,8 +25,8 @@ class App extends React.Component {
     let that = this;
     $.ajax({
       type: "get",
-      url: `http://localhost:3003/id`,
-      data: this.state.id,
+      url: `http://localhost:3003/${id}/images`,
+      //data: this.state.id,
       success: function(data) {
         that.setState({
           mainImage: data[id][0],
