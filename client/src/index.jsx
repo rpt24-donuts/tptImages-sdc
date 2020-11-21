@@ -6,42 +6,67 @@ import MainImage from './components/MainImage.jsx';
 import Info from './components/Info.jsx';
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      id: '7',
+      id: '15',
       mainImage:'',
-      imagesList: []
+      imagesList: [],
+      title: 'Title Placeholder',
+      average: 0,
+      ratings: 0,
+      pageLength: 0,
+      standards:['RL 4.4', 'RL 4.5'],
+      grades: '4th Grade, 5th Grade'
     }
-    this.onHover = this.onHover(this);
+    this.onHover = this.onHover.bind(this);
   }
 
-  onHover (e) {
-    console.log(e)
+  onHover(url) {
+    this.setState({
+      mainImage: url
+    });
   }
 
   componentDidMount() {
-    let id = this.state.id;
-    let that = this;
-    $.ajax({
-      type: "get",
-      url: `http://localhost:3003/${id}/images`,
-      //data: this.state.id,
-      success: function(data) {
-        that.setState({
+    let id = Math.floor(Math.random() * 99 + 1);
+    this.setState({
+      id: id
+    });
+    //let id = this.state.id;
+    $.get(`http://localhost:3003/${id}/images`, (data) => {
+        this.setState({
           mainImage: data[id][0],
           imagesList: data[id]
         });
-      },
+    });
+    $.get(`http://localhost:3001/${id}/stats`, (data) => {
+      gradeList = [];
+      data[2].forEach(grade => {
+        gradeList.push(grade._id)
+      });
+      gradeList=gradeList.join(', ');
+      this.setState({
+        average: data[1][0].average,
+        ratings: data[1][0].count,
+        title: data[0],
+        grades: gradeList
+      });
+    });
+    $.get(`http://localhost:3002/Product${id}/DS`, (data) => {
+      this.setState({
+        pageLength: data[pageLength],
+        standards: data[standards]
+      });
     });
   }
 
   render() {
     return (
       <div id="main">
-        <Title/>
-        <MainImage image={this.state.mainImage} list={this.state.imagesList}/>
-        <Info/>
+        <Title title={this.state.title} average={this.state.average} ratings={this.state.ratings}/>
+        <MainImage image={this.state.mainImage} list={this.state.imagesList} hover={this.onHover}/>
+        <Info pageLength={this.state.pageLength} standards={this.state.standards} grades={this.state.grades}/>
       </div>
     );
   }
