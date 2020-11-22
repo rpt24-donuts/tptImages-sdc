@@ -4,7 +4,7 @@ const ImagesList = (props) => {
   return (
     <div>
       <div id='preview-box'>
-        <img class='preview' src={props.preview} onMouseOver={() => props.hover(props.preview)}></img>
+        <img className='preview' src={props.preview} onMouseOver={() => props.hover(props.preview)}></img>
       </div>
     </div>
   )

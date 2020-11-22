@@ -9,7 +9,7 @@ const MainImage = (props) => {
       </div>
       <div id='list'>
         {props.list.map((preview) => {
-          return <ImagesList preview={preview} hover={props.hover}/>
+          return <ImagesList preview={preview} key={preview} hover={props.hover}/>
         })}
       </div>
     </div>
