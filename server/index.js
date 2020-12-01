@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const images = require('../database/config.js');
 
 const app = express();
-//const port = 3003;
 
 const mongoUri = 'mongodb://localhost/tpt';
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -25,9 +24,5 @@ app.get('/:id/images', (req, res) => {
     }
   });
 });
-
-// app.listen(port, () => {
-//   console.log(`Example app listening at http://localhost:${port}`);
-// });
 
 module.exports = app;
