@@ -2,12 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const images = require('../database/config.js');
-
+const cors = require('cors');
 const app = express();
-
 const mongoUri = 'mongodb://localhost/tpt';
+
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+app.use(cors());
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,15 +25,5 @@ app.get('/:id/images', (req, res) => {
     }
   });
 });
-
-// app.get('/bundle', (req, res) => {
-//   console.log('/ GET')
-//   res.sendFile(path.join(__dirname, "../client/dist/bundle.js"));
-//   //res.send('file')
-// });
-
-// app.listen(port, () => {
-//   console.log(`Example app listening at http://localhost:${port}`);
-// });
 
 module.exports = app;
