@@ -39,8 +39,8 @@ class App extends React.Component {
           imagesList: data[id]
         });
     });
-    $.get(`http://localhost:3001/${id}/stats`, (data) => {
-      gradeList = [];
+    $.get(`http://localhost:3001/products/${id}/ratings`, (data) => {
+      let gradeList = [];
       data[2].forEach(grade => {
         gradeList.push(grade._id)
       });
@@ -52,7 +52,7 @@ class App extends React.Component {
         grades: gradeList
       });
     });
-    $.get(`http://localhost:3002/Product${id}/DS`, (data) => {
+    $.get(`http://localhost:3002/${id}/description-and-standards`, (data) => {
       this.setState({
         pageLength: data[pageLength],
         standards: data[standards]
@@ -62,7 +62,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="main">
+      <div id="images-app">
         <Title title={this.state.title} average={this.state.average} ratings={this.state.ratings}/>
         <MainImage image={this.state.mainImage} list={this.state.imagesList} hover={this.onHover}/>
         <Info pageLength={this.state.pageLength} standards={this.state.standards} grades={this.state.grades}/>
