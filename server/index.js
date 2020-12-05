@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const images = require('../database/config.js');
 
 const app = express();
-//const port = 3003;
 
 const mongoUri = 'mongodb://localhost/tpt';
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -31,6 +30,7 @@ app.get('/:id/images', (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 // app.get('/bundle', (req, res) => {
 //   console.log('/ GET')
 //   res.sendFile(path.join(__dirname, "../client/dist/bundle.js"));
@@ -42,3 +42,6 @@ app.get('/:id/images', (req, res) => {
 // });
 
 module.exports = app;
+=======
+module.exports = app;
+>>>>>>> e06e3ec4fcab00d4ebf8550aabb425df2d61451a
