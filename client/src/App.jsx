@@ -15,7 +15,7 @@ class App extends React.Component {
       title: 'Title Placeholder',
       average: 0,
       ratings: 0,
-      pageLength: 0,
+      pages: 0,
       standards:['RL 4.4', 'RL 4.5'],
       grades: '4th Grade, 5th Grade'
     }
@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let id = Math.floor(Math.random() * 99 + 1);
+    let id = window.location.href.split("/")[4];
     this.setState({
       id: id
     });
@@ -52,10 +52,14 @@ class App extends React.Component {
         grades: gradeList
       });
     });
-    $.get(`http://localhost:3002/${id}/description-and-standards`, (data) => {
+    $.get(`http://localhost:3002/products/${id}/description-and-standards`, (data) => {
+      let standards = [];
+      for (var key in data.standards) {
+        standards.push(key)
+      }
       this.setState({
-        pageLength: data[pageLength],
-        standards: data[standards]
+        pages: data.pageLength,
+        standards: standards
       });
     });
   }
@@ -65,7 +69,7 @@ class App extends React.Component {
       <div id="images-app">
         <Title title={this.state.title} average={this.state.average} ratings={this.state.ratings}/>
         <MainImage image={this.state.mainImage} list={this.state.imagesList} hover={this.onHover}/>
-        <Info pageLength={this.state.pageLength} standards={this.state.standards} grades={this.state.grades}/>
+        <Info pages={this.state.pages} standards={this.state.standards} grades={this.state.grades}/>
       </div>
     );
   }

@@ -17,17 +17,15 @@ const urls = [];
 const insertData = (data) => {
   images.create(data)
     .then(() => {
-      console.log('succesful db insertion');
-      let search = {}
-      search['1'] = /.*/
-      console.log(search)
-      //  db.disconnect()
-       images.find(search, (err, pics) => {
-         if(err) {console.log(err)}
-         else {
-          console.log('pics', pics)
-         }
-       });
+      const search = {};
+      search['1'] = /.*/;
+      images.find(search, (err, pics) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('pics', pics);
+        }
+      });
     });
 };
 
@@ -35,15 +33,14 @@ s3.listObjects(bucketParams, (err, data) => {
   if (err) {
     console.log('Error', err);
   } else {
-    console.log('Successful S3 list');
     data.Contents.forEach((obj) => {
       urls.push(`https://tpt-imagesmodule.s3.amazonaws.com/${obj.Key}`);
     });
     const docs = [];
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 100; i += 1) {
       const imageCount = Math.floor(Math.random() * (4) + 1);
       const allImages = [];
-      for (let j = 0; j < imageCount; j++) {
+      for (let j = 0; j < imageCount; j += 1) {
         const randomUrl = Math.floor(Math.random() * urls.length);
         allImages.push(urls[randomUrl]);
       }

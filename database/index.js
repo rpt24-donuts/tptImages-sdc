@@ -6,14 +6,12 @@ const db = mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopolog
 const connection = mongoose.connection;
 
 connection.once('open', () => {
-  console.log('MongoDB connected successfully');
   connection.db.listCollections().toArray((err, collections) => {
     if (err) {
       console.log(err);
     } else {
       if (collections.length > 0) {
-        console.log('Collections Exists in DB');
-        mongoose.connection.db.dropCollection('images', (err, result) => {
+        mongoose.connection.db.dropCollection('images', (err) => {
           if (err) {
             console.log(err);
           } else {

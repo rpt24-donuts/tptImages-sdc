@@ -10,7 +10,7 @@ const Info = (props) => {
       <div className='images-info-header'>Resource Types</div>
       <div>Vivamus dapibus</div>
       <div className='images-info-header'>Format</div>
-      <div>{props.pageLength} pages</div>
+      <div>{props.pages} pages</div>
       <hr id='images-break'></hr>
       <div className='images-info-header'>Standards</div>
       <div>{props.standards.map(standard => {
