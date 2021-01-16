@@ -2,7 +2,7 @@
   font-family: 'Montserrat', sans-serif;
   display: grid;
   width: 714.656px;
-  grid-template-columns: 375px 275px;
+  grid-template-columns: 375px 339px;
   grid-template-rows: 130px 500px;
   background-color: #fff;
   box-sizing: border-box;
@@ -77,7 +77,7 @@
 }
 #images-break {
   border: 1px solid #DDD;
-  width: 250px;
+  width: 339px;
   margin-left: 0px;;
 }
 .images-preview-box{

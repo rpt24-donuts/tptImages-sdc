@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
 const images = require('../database/config.js');
+const creds = require('../mongo_creds.js');
 
 const app = express();
-const mongoUri = 'mongodb://localhost/tpt';
 
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb://${creds.user}:${creds.pass}@54.173.228.201:27017/tpt`, { useNewUrlParser: true, useUnifiedTopology: true })
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, '/../client/dist')));

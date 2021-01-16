@@ -103,3 +103,5 @@ typings/
 .tern-port
 
 aws_config.js
+*.pem
+mongo_creds.js

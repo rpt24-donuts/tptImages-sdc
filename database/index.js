@@ -1,8 +1,16 @@
 const mongoose = require('mongoose');
+const creds = require('../mongo_creds.js');
 
-const mongoUri = 'mongodb://localhost/tpt';
+const mongoUri = 'mongodb://54.173.228.201:27017/tpt'
 
-const db = mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+   user: creds.user,
+   pass: creds.pass
+ ,
+  useUnifiedTopology: true
+});
+
 const connection = mongoose.connection;
 
 connection.once('open', () => {

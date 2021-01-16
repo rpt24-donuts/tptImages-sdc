@@ -1,4 +1,6 @@
 const path = require('path');
+var S3Plugin = require('webpack-s3-plugin');
+const aws = require('./aws_config.js');
 
 module.exports = {
   entry: path.join(__dirname, '/client/src/index.jsx'),
@@ -11,7 +13,6 @@ module.exports = {
       {
         test: [/\.jsx?/],
         exclude: /node_modules/,
-        // include: [path.join(__dirname, '/client/src/index.jsx')],
         use: {
           loader: 'babel-loader',
           options: {
@@ -21,4 +22,17 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new S3Plugin({
+      include:'bundle.js',
+      s3Options: {
+        accessKeyId: aws.aws_access_key_id,
+        secretAccessKey: aws.aws_secret_access_key
+      },
+      s3UploadOptions: {
+        Bucket: 'fec-proxy2020'
+      }
+    })
+  ],
+  watch: true
 };

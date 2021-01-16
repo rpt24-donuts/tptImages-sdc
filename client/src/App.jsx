@@ -39,7 +39,7 @@ class App extends React.Component {
           imagesList: data[id]
         });
     });
-    $.get(`http://localhost:3001/products/${id}/ratings`, (data) => {
+    $.get(`http://18.144.61.129:3001/products/${id}/ratings`, (data) => {
       let gradeList = [];
       data[2].forEach(grade => {
         gradeList.push(grade._id)
@@ -52,7 +52,7 @@ class App extends React.Component {
         grades: gradeList
       });
     });
-    $.get(`http://localhost:3002/products/${id}/description-and-standards`, (data) => {
+    $.get(`http://18.222.237.222:3002/products/${id}/description-and-standards`, (data) => {
       let standards = [];
       for (var key in data.standards) {
         standards.push(key)
