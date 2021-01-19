@@ -1,6 +1,6 @@
 # tptImageModule
 
-> A recreation of the image module from TeachersPayTeachers.
+> A recreation of the image module from TeachersPayTeachers. Designed to be used in the proxy server under [Related Projects](#Related).
  - https://www.teacherspayteachers.com/
 
  Highlighted Technologies: React, Express, Mongo, Jest, Webpack, Grunt, AWS S3 + EC2
@@ -9,10 +9,9 @@
 
 ## Table of Contents
 
-1. [Usage](#Usage)
-2. [Getting Started](#Getting)
-3. [Testing](#Testing)
-4. [Related Projects](#Related)
+1. [Getting Started](#Getting)
+2. [Testing](#Testing)
+3. [Related Projects](#Related)
 
 ## Getting Started
 
