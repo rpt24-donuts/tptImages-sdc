@@ -58,9 +58,9 @@ npm run test
 
 ## CRUD
 
-#### Create / POST - create a new item
+### Create / POST - create a new item
 
-##### Input
+#### Input
 
 - New Product ID is provided. New images document in database will be created associated with new product.
 
@@ -79,7 +79,7 @@ Request Body example:
 }
 ```
 
-##### Output
+#### Output
 
 - If successful, 200 status code and message 'New Product Images Posted (new Document Inserted - see example below)'.
 
@@ -97,15 +97,15 @@ Request Body example:
 
 - If product ID exists, 404 status code and message 'Product ID (Product ID) exists, can't create duplicate ID'.
 
-#### Read / GET - read an item
+### Read / GET - read an item
 
-##### Input
+#### Input
 
 ```
 Endpoint: `/:id/images`
 ```
 
-##### Output
+#### Output
 
 ```
 {
@@ -126,9 +126,9 @@ Response example:
   "_id":"6009259601b8416eff82e903"}
 ```
 
-#### Update / PUT - update an item
+### Update / PUT - update an item
 
-##### Input
+#### Input
 
 ```
 Endpoint: `/:id/images`
@@ -146,20 +146,20 @@ Request Body example:
 }
 ```
 
-##### Output
+#### Output
 
 - If successful, 200 status code.
 - If product ID does not exist, 404 status code and message 'Product ID not found'.
 
-#### Delete / DELETE - delete an item
+### Delete / DELETE - delete an item
 
-##### Input
+#### Input
 
 ```
 Endpoint: `/:id/images`
 ```
 
-##### Output
+#### Output
 
 - If successful, 200 status code.
 - If product ID does not exist, 404 status code and message 'Product ID not found'.
