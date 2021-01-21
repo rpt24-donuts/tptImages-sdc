@@ -60,9 +60,9 @@ npm run test
 
 #### Create / POST - create a new item
 
-Input
+##### Input
 
-New Product ID is provided. New images document in database will be created associated with new product.
+- New Product ID is provided. New images document in database will be created associated with new product.
 
 ```
 Endpoint: `/:id/images`
@@ -72,45 +72,45 @@ Request Body:
 
 Request Body example:
 {
-     "104": [
+    "104": [
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (99).jpg",
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (50).jpg"
     ]
- }
+}
 ```
 
-Output
+##### Output
 
 - If successful, 200 status code and message 'New Product Images Posted (new Document Inserted - see example below)'.
 
 ```
-New Product Images Posted {
-'104': [
-'https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (979).jpg',
-'https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (500).jpg'
-],
-_id: 6009cb158282651e4ec2502a,
-item: '104',
-__v: 0
-}
+  New Product Images Posted {
+  '104': [
+  'https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (979).jpg',
+  'https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (500).jpg'
+  ],
+  _id: 6009cb158282651e4ec2502a,
+  item: '104',
+  __v: 0
+  }
 ```
 
 - If product ID exists, 404 status code and message 'Product ID (Product ID) exists, can't create duplicate ID'.
 
 #### Read / GET - read an item
 
-Input
+##### Input
 
 ```
 Endpoint: `/:id/images`
 ```
 
-Output
+##### Output
 
 ```
 {
   Product ID Number : [Array of up to 5 url strings],
-   item: "Product ID Number",
+  item: "Product ID Number",
 }
 
 Response example:
@@ -128,7 +128,7 @@ Response example:
 
 #### Update / PUT - update an item
 
-Input
+##### Input
 
 ```
 Endpoint: `/:id/images`
@@ -143,23 +143,23 @@ Request Body example:
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (418).jpg",
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (500).jpg"
     ]
- }
+}
 ```
 
-Output
+##### Output
 
 - If successful, 200 status code.
 - If product ID does not exist, 404 status code and message 'Product ID not found'.
 
 #### Delete / DELETE - delete an item
 
-Input
+##### Input
 
 ```
 Endpoint: `/:id/images`
 ```
 
-Output
+##### Output
 
 - If successful, 200 status code.
 - If product ID does not exist, 404 status code and message 'Product ID not found'.
