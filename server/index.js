@@ -59,9 +59,27 @@ app.put('/:id/images', (req, res) => {
 	});
 });
 
-app.post('/images', (req, res) => {
-	let name;
-	images.find().sort({ itemNumber: -1 }).limit(1).then(console.log('here'));
+app.post('/:id/images', (req, res) => {
+	const name = req.params.id;
+	let insert = req.body;
+	insert['item'] = name;
+	images.find({ item: name }, (err, status) => {
+		if (err) {
+			console.log(err);
+		} else {
+			if (status.length > 0) {
+				res.status(404).send(`Product ID ${name} exist, can't create duplicate ID`);
+			} else {
+				images.create(insert, (err, status) => {
+					if (err) {
+						console.log(err);
+					} else {
+						res.status(200).send(`New Product Images Posted ${status}`);
+					}
+				});
+			}
+		}
+	});
 });
 
 module.exports = app;

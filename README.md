@@ -60,12 +60,49 @@ npm run test
 
 #### Create / POST - create a new item
 
+Input
+
+New Product ID is provided. New images document in database will be created associated with new product.
+
+```
+Endpoint: `/:id/images`
+
+Request Body:
+{ Product ID Number : [Array of up to 5 url strings] }
+
+Request Body example:
+{
+     "104": [
+        "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (99).jpg",
+        "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (50).jpg"
+    ]
+ }
+```
+
+Output
+
+- If successful, 200 status code and message 'New Product Images Posted (new Document Inserted - see example below)'.
+
+```
+New Product Images Posted {
+'104': [
+'https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (979).jpg',
+'https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (500).jpg'
+],
+_id: 6009cb158282651e4ec2502a,
+item: '104',
+__v: 0
+}
+```
+
+- If product ID exists, 404 status code and message 'Product ID (Product ID) exists, can't create duplicate ID'.
+
 #### Read / GET - read an item
 
 Input
 
 ```
-`/:id/images`
+Endpoint: `/:id/images`
 ```
 
 Output
@@ -76,7 +113,7 @@ Output
    item: "Product ID Number",
 }
 
-example:
+Response example:
   {
     "1":
     [
@@ -94,12 +131,12 @@ example:
 Input
 
 ```
-`/:id/images`
+Endpoint: `/:id/images`
 
 Request Body:
 { Product ID Number : [Array of up to 5 url strings] }
 
-example:
+Request Body example:
 {
     "4": [
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (979).jpg",
@@ -112,25 +149,17 @@ example:
 Output
 
 - If successful, 200 status code.
-- If product ID does not exist, 404 status code.
-
-```
-Product ID not found
-```
+- If product ID does not exist, 404 status code and message 'Product ID not found'.
 
 #### Delete / DELETE - delete an item
 
 Input
 
 ```
-`/:id/images`
+Endpoint: `/:id/images`
 ```
 
 Output
 
 - If successful, 200 status code.
-- If product ID does not exist, 404 status code.
-
-```
-Product ID not found
-```
+- If product ID does not exist, 404 status code and message 'Product ID not found'.

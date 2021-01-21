@@ -46,10 +46,8 @@ s3.listObjects(bucketParams, (err, data) => {
 			const obj = {};
 			obj[i] = allImages;
 			obj['item'] = String(i);
-			obj['itemNumber'] = i;
 			docs.push(obj);
 		}
-		console.log('DOCS', docs);
 		insertData(docs);
 	}
 });
