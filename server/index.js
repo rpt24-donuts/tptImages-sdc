@@ -68,7 +68,7 @@ app.post('/:id/images', (req, res) => {
 			console.log(err);
 		} else {
 			if (status.length > 0) {
-				res.status(404).send(`Product ID ${name} exist, can't create duplicate ID`);
+				res.status(404).send(`Product ID ${name} exists, can't create duplicate ID`);
 			} else {
 				images.create(insert, (err, status) => {
 					if (err) {
