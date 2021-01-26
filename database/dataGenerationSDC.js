@@ -25,8 +25,8 @@ const jsonGen = (id) => {
 		allImages.push(urls[randomUrl]);
 	}
 	const obj = {};
-	obj['images'] = allImages;
-	obj['item'] = String(id);
+	obj.images = allImages;
+	obj.item = String(id);
 	return obj;
 };
 
