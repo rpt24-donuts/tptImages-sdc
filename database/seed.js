@@ -44,7 +44,7 @@ s3.listObjects(bucketParams, (err, data) => {
 				allImages.push(urls[randomUrl]);
 			}
 			const obj = {};
-			obj[i] = allImages;
+			obj['images'] = allImages;
 			obj['item'] = String(i);
 			docs.push(obj);
 		}

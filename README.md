@@ -68,11 +68,11 @@ npm run test
 Endpoint: `/:id/images`
 
 Request Body:
-{ Product ID Number : [Array of up to 5 url strings] }
+{ images : [Array of up to 5 url strings] }
 
 Request Body example:
 {
-    "104": [
+    "images": [
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (99).jpg",
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (50).jpg"
     ]
@@ -85,7 +85,7 @@ Request Body example:
 
 ```
   New Product Images Posted {
-  '104': [
+  'images': [
   'https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (979).jpg',
   'https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (500).jpg'
   ],
@@ -109,13 +109,13 @@ Endpoint: `/:id/images`
 
 ```
 {
-  Product ID Number : [Array of up to 5 url strings],
+  images : [Array of up to 5 url strings],
   item: "Product ID Number",
 }
 
 Response example:
   {
-    "1":
+    "images":
     [
       "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (906).jpg",
       "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (857).jpg",
@@ -138,7 +138,7 @@ Request Body:
 
 Request Body example:
 {
-    "4": [
+    "images": [
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (979).jpg",
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (418).jpg",
         "https://tpt-imagesmodule-sdc.s3.amazonaws.com/SDC Images/tptImages (500).jpg"
