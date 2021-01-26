@@ -41,10 +41,8 @@ s3.listObjects(bucketParams, (err, data) => {
 		for (let i = 1; i <= itemCount; i += 1) {
 			let seedItem = jsonGen(i);
 			writer.write(seedItem);
-			// console.log(seedItem);
 		}
 		writer.end();
 		console.log('done');
-		// return;
 	}
 });

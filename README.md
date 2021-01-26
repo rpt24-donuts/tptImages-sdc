@@ -25,10 +25,21 @@ npm install
 
 To run on a local machine the mongo database uris in server/index.js and database/index.js will need to be changed from my (now stopped) EC2 instance and put your mongo credentials in a new mongo_creds.js. You will also need to set up your own S3 bucket of images, change the bucket name in databse/seed.js and put the credentials in a new aws_config.js. An additional S3 bucket is needed for grunt to send the bundle.js - change the bucket name in webpack.config.js.
 
+### For FEC Database setup:
+
 To seed the database
 
 ```
 npm run seed
+```
+
+### For SDC Database setup:
+
+To generate and load 10M items into database
+From root directory, first run command below and must wait about 5-10 minutes for the .csv file to be generated with 10M data.
+
+```
+npm run sdc-data-gen
 ```
 
 To start webpack
