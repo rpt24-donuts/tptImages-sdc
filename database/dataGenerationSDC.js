@@ -4,7 +4,7 @@ const config = require('../aws_config.js');
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
 const writer = csvWriter();
-const itemCount = 100;
+const itemCount = 10000000;
 
 const creds = new AWS.Credentials(config.aws_access_key_id, config.aws_secret_access_key);
 AWS.config.credentials = creds;
@@ -37,10 +37,11 @@ s3.listObjects(bucketParams, (err, data) => {
 		data.Contents.forEach((obj) => {
 			urls.push(`https://tpt-imagesmodule-sdc.s3.amazonaws.com/${obj.Key}`);
 		});
-		writer.pipe(fs.createWriteStream('data.csv'));
+		writer.pipe(fs.createWriteStream('database/data.csv'));
 		for (let i = 1; i <= itemCount; i += 1) {
 			let seedItem = jsonGen(i);
 			writer.write(seedItem);
+			// console.log(seedItem);
 		}
 		writer.end();
 		console.log('done');
