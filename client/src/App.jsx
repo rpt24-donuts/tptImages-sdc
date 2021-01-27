@@ -37,8 +37,8 @@ class App extends React.Component {
 		$.get(`http://localhost:3003/${id}/images`, (data) => {
 			console.log(data);
 			this.setState({
-				mainImage: data[id][0],
-				imagesList: data[id],
+				mainImage: data['images'][0],
+				imagesList: data['images'],
 			});
 		});
 		$.get(`http://localhost:3001/products/${id}/ratings`, (data) => {
