@@ -42,6 +42,20 @@ From root directory, first run command below and must wait about 5-10 minutes fo
 npm run sdc-data-gen
 ```
 
+#### For SDC Postgres data loading:
+
+Ensure postgresql is started. (Note: if username is not postgres for psql, update pack.json line 14 and update database/postgres/dbconnect.js username and password lines 3 and 4). Update database/postgres/dbconnect.js line 7 absolute path previous generated above.
+
+```
+npm run sdc-postgres-seed
+```
+
+To view random set in database, in psql use following:
+
+```
+SELECT * FROM images LIMIT 20 OFFSET 10000;
+```
+
 To start webpack
 
 ```
