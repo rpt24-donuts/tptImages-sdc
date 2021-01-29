@@ -100,7 +100,7 @@ npm run test
 - New Product ID is provided. New images document in database will be created associated with new product.
 
 ```
-Endpoint: `/:id/images`
+Endpoint: `items/:itemid/images`
 
 Request Body:
 { images : [Array of up to 5 url strings] }
@@ -137,7 +137,7 @@ Request Body example:
 #### Input
 
 ```
-Endpoint: `/:id/images`
+Endpoint: `items/:itemid/images`
 ```
 
 #### Output
@@ -166,7 +166,7 @@ Response example:
 #### Input
 
 ```
-Endpoint: `/:id/images`
+Endpoint: `items/:itemid/images`
 
 Request Body:
 { Product ID Number : [Array of up to 5 url strings] }
@@ -191,7 +191,7 @@ Request Body example:
 #### Input
 
 ```
-Endpoint: `/:id/images`
+Endpoint: `items/:itemid/images`
 ```
 
 #### Output

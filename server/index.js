@@ -15,8 +15,8 @@ app.use(express.static(path.join(__dirname, '/../client/dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/:id/images', (req, res) => {
-	const name = req.params.id;
+app.get('items/:itemid/images', (req, res) => {
+	const name = req.params.itemid;
 	const search = {};
 	search[name] = /.*/;
 	images.find({ item: name }, (err, pics) => {
@@ -28,8 +28,8 @@ app.get('/:id/images', (req, res) => {
 	});
 });
 
-app.delete('/:id/images', (req, res) => {
-	const name = req.params.id;
+app.delete('items/:itemid/images', (req, res) => {
+	const name = req.params.itemid;
 	images.deleteOne({ item: name }, (err, status) => {
 		if (err) {
 			console.log(err);
@@ -43,8 +43,8 @@ app.delete('/:id/images', (req, res) => {
 	});
 });
 
-app.put('/:id/images', (req, res) => {
-	const name = req.params.id;
+app.put('items/:itemid/images', (req, res) => {
+	const name = req.params.itemid;
 	req.body.item = name;
 	images.findOneAndUpdate({ item: name }, { $set: req.body }, { upsert: true }, (err, status) => {
 		if (err) {
@@ -59,8 +59,8 @@ app.put('/:id/images', (req, res) => {
 	});
 });
 
-app.post('/:id/images', (req, res) => {
-	const name = req.params.id;
+app.post('items/:itemid/images', (req, res) => {
+	const name = req.params.itemid;
 	let insert = req.body;
 	insert['item'] = name;
 	images.find({ item: name }, (err, status) => {
