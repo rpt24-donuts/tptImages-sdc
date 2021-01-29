@@ -58,7 +58,7 @@ SELECT * FROM images LIMIT 20 OFFSET 10000;
 
 #### For SDC CouchDB data loading:
 
-Ensure you have a server admin profile and you can access couchdb. Check couchdb is started by going to browser 'http://127.0.0.1:5984'. (Update file database/couchdb/seedCouchdb.js with username and password lines 1 and 2. Update line 20 to absolute path of csv previously generated above.) Following script will take 30 minutes to load csv into db.
+Ensure you have a server admin profile and you can access couchdb. Check couchdb is started by going to browser 'http://127.0.0.1:5984'. (Update file database/couchdb/seedCouchdb.js with username and password lines 1 and 2. Update line 20 to absolute path of csv previously generated above.) Following script will take about 1 hour to load csv into db.
 
 ```
 npm run sdc-couchdb-seed
