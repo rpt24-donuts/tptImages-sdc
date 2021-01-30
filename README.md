@@ -44,7 +44,7 @@ npm run sdc-data-gen
 
 #### For SDC Postgres data loading:
 
-Ensure postgresql is started. (Note: if username is not postgres for psql, update pack.json line 14 and update database/postgres/dbconnect.js username and password lines 3 and 4). Update database/postgres/dbconnect.js line 7 absolute path previous generated above.
+Ensure postgresql is started. (Note: if username is not postgres for psql, update pack.json line 14 and update database/postgres/dbconnect.js username and password lines 3 and 4). Update database/postgres/dbconnect.js line 7 absolute path previous generated above. Following script will take 2-3 minutes to load csv into db.
 
 ```
 npm run sdc-postgres-seed
@@ -55,6 +55,16 @@ To view random set in database, in psql use following:
 ```
 SELECT * FROM images LIMIT 20 OFFSET 10000;
 ```
+
+#### For SDC CouchDB data loading:
+
+Ensure you have a server admin profile and you can access couchdb. Check couchdb is started by going to browser 'http://127.0.0.1:5984'. (Update file database/couchdb/seedCouchdb.js with username and password lines 1 and 2. Update line 20 to absolute path of csv previously generated above.) Following script will take about 1 hour to load csv into db.
+
+```
+npm run sdc-couchdb-seed
+```
+
+To view database import progress through browser http://127.0.0.1:5984/_utils/#/_all_dbs.
 
 To start webpack
 
@@ -90,7 +100,7 @@ npm run test
 - New Product ID is provided. New images document in database will be created associated with new product.
 
 ```
-Endpoint: `/:id/images`
+Endpoint: `items/:itemid/images`
 
 Request Body:
 { images : [Array of up to 5 url strings] }
@@ -127,7 +137,7 @@ Request Body example:
 #### Input
 
 ```
-Endpoint: `/:id/images`
+Endpoint: `items/:itemid/images`
 ```
 
 #### Output
@@ -156,7 +166,7 @@ Response example:
 #### Input
 
 ```
-Endpoint: `/:id/images`
+Endpoint: `items/:itemid/images`
 
 Request Body:
 { Product ID Number : [Array of up to 5 url strings] }
@@ -181,7 +191,7 @@ Request Body example:
 #### Input
 
 ```
-Endpoint: `/:id/images`
+Endpoint: `items/:itemid/images`
 ```
 
 #### Output
