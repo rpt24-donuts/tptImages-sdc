@@ -8,7 +8,7 @@ const port = 3003;
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
-app.use('/?products/:itemid', express.static('client/dist'));
+app.use(express.static('client/dist'));
 
 app.get('/items/:itemid/images', (req, res) => {
 	controller.get(req, res);
