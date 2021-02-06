@@ -34,11 +34,11 @@ class App extends React.Component {
 		this.setState({
 			id: id,
 		});
-		$.get(`http://localhost:3003/${id}/images`, (data) => {
-			console.log(data);
+		$.get(`http://localhost:3003/items/${id}/images`, (data) => {
+			let imageArr = data[0].images.split(',');
 			this.setState({
-				mainImage: data['images'][0],
-				imagesList: data['images'],
+				mainImage: imageArr[0],
+				imagesList: imageArr,
 			});
 		});
 		$.get(`http://localhost:3001/products/${id}/ratings`, (data) => {

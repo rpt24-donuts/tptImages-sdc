@@ -1,85 +1,32 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const cors = require('cors');
-const path = require('path');
-const images = require('../database/config.js');
-const creds = require('../mongo_creds.js');
+const controller = require('./controller');
 
 const app = express();
-//mongodb://${creds.user}:${creds.pass}@54.173.228.201:27017/tpt`
-mongoose.connect(`mongodb://localhost/tpt`, { useNewUrlParser: true, useUnifiedTopology: true });
+const port = 3003;
 
+app.use(express.json());
 app.use(cors());
-app.use(express.static(path.join(__dirname, '/../client/dist')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static('client/dist'));
 
-app.get('items/:itemid/images', (req, res) => {
-	const name = req.params.itemid;
-	const search = {};
-	search[name] = /.*/;
-	images.find({ item: name }, (err, pics) => {
-		if (err) {
-			console.log(err);
-		} else {
-			res.send(pics[0]);
-		}
-	});
+app.get('/items/:itemid/images', (req, res) => {
+	controller.get(req, res);
 });
 
-app.delete('items/:itemid/images', (req, res) => {
-	const name = req.params.itemid;
-	images.deleteOne({ item: name }, (err, status) => {
-		if (err) {
-			console.log(err);
-		} else {
-			if (status.deletedCount === 1) {
-				res.sendStatus(200);
-			} else {
-				res.status(404).send('Product ID not found');
-			}
-		}
-	});
+app.delete('/items/:itemid/images', (req, res) => {
+	controller.delete(req, res);
 });
 
-app.put('items/:itemid/images', (req, res) => {
-	const name = req.params.itemid;
-	req.body.item = name;
-	images.findOneAndUpdate({ item: name }, { $set: req.body }, { upsert: true }, (err, status) => {
-		if (err) {
-			console.log(err);
-		} else {
-			if (status) {
-				res.send(200);
-			} else {
-				res.status(404).send('Product ID not found');
-			}
-		}
-	});
+app.put('/items/:itemid/images', (req, res) => {
+	controller.put(req, res);
 });
 
-app.post('items/:itemid/images', (req, res) => {
-	const name = req.params.itemid;
-	let insert = req.body;
-	insert['item'] = name;
-	images.find({ item: name }, (err, status) => {
-		if (err) {
-			console.log(err);
-		} else {
-			if (status.length > 0) {
-				res.status(404).send(`Product ID ${name} exists, can't create duplicate ID`);
-			} else {
-				images.create(insert, (err, status) => {
-					if (err) {
-						console.log(err);
-					} else {
-						res.status(200).send(`New Product Images Posted ${status}`);
-					}
-				});
-			}
-		}
-	});
+app.post('/items/:itemid/images', (req, res) => {
+	console.log('POST');
+	controller.post(req, res);
 });
 
-module.exports = app;
+app.listen(port, () => {
+	console.log(`Listening at http://localhost:${port}`);
+});
