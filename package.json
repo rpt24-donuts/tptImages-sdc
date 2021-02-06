@@ -10,7 +10,7 @@
     "dev": "webpack --watch",
     "lint": "./node_modules/.bin/eslint",
     "seed": "node database/seed.js",
-    "sdc-data-gen": "node --max-old-space-size=8192 database/dataGenerationSDC.js",
+    "sdc-data-gen": "node database/dataGenerationSDC.js",
     "sdc-postgres-seed": "psql -U postgres -a -f database/postgres/schema.sql && node database/postgres/dbconnect.js",
     "sdc-couchdb-seed": "node database/couchdb/seedCouchdb.js"
   },
