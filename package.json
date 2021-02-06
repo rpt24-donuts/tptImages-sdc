@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --detectOpenHandles --collectCoverage",
     "test:watch": "jest --watch",
-    "start": "nodemon server/start.js",
+    "start": "nodemon server/index.js",
     "dev": "webpack --watch",
     "lint": "./node_modules/.bin/eslint",
     "seed": "node database/seed.js",
