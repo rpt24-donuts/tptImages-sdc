@@ -17,7 +17,6 @@ const controller = {
 						if (err) {
 							console.log(err);
 						} else {
-							console.log(status);
 							res.status(200).send(`New Product Images Posted ${status}`);
 						}
 					});
@@ -40,16 +39,16 @@ const controller = {
 		});
 	},
 	put: (req, res) => {
-		const name = req.params.itemid;
-		req.body.item = name;
-		images.findOneAndUpdate({ item: name }, { $set: req.body }, { upsert: true }, (err, status) => {
+		const images = stringifyImages(req.body.images);
+		const updateQuery = `UPDATE images SET images = '${images}' WHERE item = '${req.params.itemid}';`;
+		client.query(updateQuery, (err, data) => {
 			if (err) {
 				console.log(err);
 			} else {
-				if (status) {
-					res.send(200);
+				if (data.rowCount > 0) {
+					res.status(200).send('Successfully updated');
 				} else {
-					res.status(404).send('Product ID not found');
+					res.status(404).send('Product ID not found ');
 				}
 			}
 		});
