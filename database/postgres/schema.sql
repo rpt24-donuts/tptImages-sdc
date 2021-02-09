@@ -4,8 +4,6 @@ CREATE DATABASE sdcimages;
 DROP TABLE IF EXISTS images;
 CREATE TABLE images (
   ID SERIAL PRIMARY KEY,
-  images varchar(5000),
-  item varchar(20)
+  item varchar(20),
+  images varchar(5000)
 )
-
--- COPY images(images, item) FROM 'database/test.csv' DELIMITER ',' CSV HEADER;

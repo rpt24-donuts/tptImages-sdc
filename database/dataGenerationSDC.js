@@ -1,5 +1,4 @@
 const AWS = require('aws-sdk');
-const db = require('./index.js');
 const config = require('../aws_config.js');
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
@@ -17,17 +16,37 @@ const bucketParams = {
 
 const urls = [];
 
-const jsonGen = (id) => {
+const imagesGenerator = () => {
 	const imageCount = Math.floor(Math.random() * 4 + 1);
-	const allImages = [];
-	for (let j = 0; j < imageCount; j += 1) {
+	let allImages = [];
+	for (let i = 0; i < imageCount; i += 1) {
 		const randomUrl = Math.floor(Math.random() * urls.length);
 		allImages.push(urls[randomUrl]);
 	}
-	const obj = {};
-	obj.images = allImages;
-	obj.item = String(id);
-	return obj;
+	return allImages;
+};
+
+const writeCount = (writer, encoding, callback) => {
+	let i = itemCount;
+	let item = 0;
+	function write() {
+		let ok = true;
+		do {
+			i -= 1;
+			item += 1;
+			const images = imagesGenerator();
+			const data = `${item},"${images}"\n`;
+			if (i === 0) {
+				writer.write(data, encoding, callback);
+			} else {
+				ok = writer.write(data, encoding);
+			}
+		} while (i > 0 && ok);
+		if (i > 0) {
+			writer.once('drain', write);
+		}
+	}
+	write();
 };
 
 s3.listObjects(bucketParams, (err, data) => {
@@ -37,12 +56,11 @@ s3.listObjects(bucketParams, (err, data) => {
 		data.Contents.forEach((obj) => {
 			urls.push(`https://tpt-imagesmodule-sdc.s3.amazonaws.com/${obj.Key}`);
 		});
-		writer.pipe(fs.createWriteStream('database/data.csv'));
-		for (let i = 1; i <= itemCount; i += 1) {
-			let seedItem = jsonGen(i);
-			writer.write(seedItem);
-		}
-		writer.end();
-		console.log('done');
+
+		const writeImages = fs.createWriteStream('database/data.csv');
+		writeImages.write('item,images\n', 'utf8');
+		writeCount(writeImages, 'utf-8', () => {
+			writeImages.end();
+		});
 	}
 });

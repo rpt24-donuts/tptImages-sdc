@@ -36,7 +36,7 @@ npm run seed
 ### For SDC Database setup:
 
 To generate and load 10M items into database
-From root directory, first run command below and must wait about 5-10 minutes for the .csv file to be generated with 10M data.
+From root directory, first run command below and must wait about < 5 minutes for the .csv file to be generated with 10M data.
 
 ```
 npm run sdc-data-gen
@@ -44,7 +44,7 @@ npm run sdc-data-gen
 
 #### For SDC Postgres data loading:
 
-Ensure postgresql is started. (Note: if username is not postgres for psql, update pack.json line 14 and update database/postgres/dbconnect.js username and password lines 3 and 4). Update database/postgres/dbconnect.js line 7 absolute path previous generated above. Following script will take 2-3 minutes to load csv into db.
+Ensure postgresql is started. (Note: if username is not postgres for psql, update pack.json line 14 and update database/postgres/dbconnect.js username and password lines 3 and 4). Update database/postgres/dbconnect.js line 7 absolute path previous generated above. Following script will take ~3 minutes to load csv into db.
 
 ```
 npm run sdc-postgres-seed
