@@ -1,0 +1,17 @@
+config:
+  target: 'http://localhost:3003/'
+  phases:
+    - duration: 1
+      arrivalRate: 1
+  payload:
+    path: 'testdata.csv'
+    fields:
+      - images
+scenarios:
+  - flow:
+      - post:
+          url: '/items/10900002/images'
+          headers:
+            Content-Type: 'application/json'
+          json:
+            images: '{{ images }}'
