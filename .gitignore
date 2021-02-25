@@ -106,3 +106,5 @@ aws_config.js
 *.pem
 mongo_creds.js
 database/data.csv
+
+newrelic.js
