@@ -34,14 +34,15 @@ class App extends React.Component {
 		this.setState({
 			id: id,
 		});
-		$.get(`http://localhost:3003/items/${id}/images`, (data) => {
+		$.get(`http://184.72.22.149:3003/items/${id}/images`, (data) => {
+
 			let imageArr = data[0].images.split(',');
 			this.setState({
 				mainImage: imageArr[0],
 				imagesList: imageArr,
 			});
 		});
-		$.get(`http://localhost:3001/products/${id}/ratings`, (data) => {
+		$.get(`http://18.191.145.140:3001/products/${id}/ratings`, (data) => {
 			let gradeList = [];
 			data[2].forEach((grade) => {
 				gradeList.push(grade._id);
