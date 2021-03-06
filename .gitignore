@@ -107,3 +107,7 @@ aws_config.js
 mongo_creds.js
 database/data.csv
 newrelic.js
+
+client/dist/bundle.js
+client/dist/loaderio-dba8bdc5646971cdaaf70ae196c7f01d.txt
+client/dist/bundle.js.LICENSE.txt
