@@ -35,7 +35,6 @@ class App extends React.Component {
 			id: id,
 		});
 		$.get(`http://184.72.22.149:3003/items/${id}/images`, (data) => {
-
 			let imageArr = data[0].images.split(',');
 			this.setState({
 				mainImage: imageArr[0],
@@ -43,16 +42,11 @@ class App extends React.Component {
 			});
 		});
 		$.get(`http://18.191.145.140:3001/products/${id}/ratings`, (data) => {
-			let gradeList = [];
-			data[2].forEach((grade) => {
-				gradeList.push(grade._id);
-			});
-			gradeList = gradeList.join(', ');
 			this.setState({
-				average: data[1][0].average,
-				ratings: data[1][0].count,
-				title: data[0],
-				grades: gradeList,
+				average: Number(data.average),
+				ratings: data.count,
+				title: data.title,
+				grades: data.grades.join(', '),
 			});
 		});
 		$.get(`http://localhost:3002/products/${id}/description-and-standards`, (data) => {
