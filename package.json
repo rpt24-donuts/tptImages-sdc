@@ -31,6 +31,7 @@
     "couchimport": "^1.5.2",
     "csv-write-stream": "^2.0.0",
     "express": "^4.17.1",
+    "faker": "^5.4.0",
     "felix-couchdb": "^1.0.8",
     "jquery": "^3.5.1",
     "mongoose": "^5.10.14",

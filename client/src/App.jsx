@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Title from './components/Title.jsx';
 import MainImage from './components/MainImage.jsx';
 import Info from './components/Info.jsx';
+import faker from 'faker';
 
 class App extends React.Component {
 	constructor(props) {
@@ -45,7 +46,7 @@ class App extends React.Component {
 			this.setState({
 				average: Number(data.average),
 				ratings: data.count,
-				title: data.title,
+				title: faker.commerce.productName(),
 				grades: data.grades.join(', '),
 			});
 		});
