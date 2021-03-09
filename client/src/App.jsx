@@ -50,7 +50,7 @@ class App extends React.Component {
 				grades: data.grades.join(', '),
 			});
 		});
-		$.get(`http://localhost:3002/products/${id}/description-and-standards`, (data) => {
+		$.get(`http://3.139.104.53:3002/products/${id}/description-and-standards`, (data) => {
 			let standards = [];
 			for (var key in data.standards) {
 				standards.push(key);
